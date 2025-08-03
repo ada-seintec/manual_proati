@@ -72,9 +72,9 @@ class PageLoader {
     async loadHTMLFile(filePath) {
         try {
             // Verifica cache primeiro
-            if (this.cache.has(filePath)) {
+            /*if (this.cache.has(filePath)) {
                 return this.cache.get(filePath);
-            }
+            }*/
 
             // Cancela request anterior se existir
             if (this.abortController) {
@@ -85,8 +85,7 @@ class PageLoader {
             this.abortController = new AbortController();
 
             const response = await fetch(filePath, {
-                signal: this.abortController.signal,
-                cache: 'force-cache' // Usa cache do browser
+                signal: this.abortController.signal
             });
             
             if (!response.ok) {
