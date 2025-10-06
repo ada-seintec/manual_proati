@@ -374,7 +374,7 @@ class PageLoader {
 	// Função para carregar e exibir datas de atualização
 	async loadUpdateDates() {
 		try {
-			const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiqN3CMukIdMAdaFnJERStgOvPMJSx-BT0LeB_WSfNZAjWVlzMksXqFNA73IM8Y_e1f9HjerQ5ozbLb4k9hUiWEwyH09ztghtnYUoyQWSYmSlw4pRCDvMzIqY_aM1J9BszCLZxNCFRq2yutC5e75hCsTxuOBEmoj7o3jpa0W6Be7nzN-RtvzMRheh92pfnRLrpe6EnX-_hABKds94P1p7oY4_L1oLkrlas8EgFgmIazBdax1lb5mm-DLA00Lynl6GJJoiWF7QFd4aJBCvWiHQbOMUj6N1SV3Xc4PuRX&lib=MGqs4kGrWEmw2oa0v22DgoDThdS_WAule');
+			const response = await fetch('https://script.google.com/macros/s/AKfycbyABkcT69oLe6aHen6_cr8Ix6F_RygVAg9CMZl-gr_2P3EKxjDun7W_vLRhzxHyJ9AKFw/exec');
 			
 			if (!response.ok) {
 				throw new Error('Erro ao carregar dados');
