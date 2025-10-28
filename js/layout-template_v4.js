@@ -8,6 +8,7 @@ class LayoutTemplate {
             { id: 'home', title: '🏠 Início', icon: '🏠' },
             { id: 'comunicados-nit', title: '📢 Comunicados NIT', icon: '📢' },
             { id: 'levantamentos', title: '📊 Levantamentos', icon: '📊' },
+			{ id: 'saresp', title: '📝 Saresp', icon: '📝' },
             { id: 'comunicados-seduc', title: '📄 Comunicados SEDUC', icon: '📄' },
             { id: 'equipe', title: '👥 Equipe', icon: '👥' },
             { id: 'conectividade', title: '🌐 Conectividade', icon: '🌐' },
