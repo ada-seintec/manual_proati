@@ -47,6 +47,7 @@ class PageLoader {
             'comunicados-seduc': 'Comunicados SEDUC - Manual PROATI DE Adamantina',
             'equipe': 'Equipe - Manual PROATI DE Adamantina',
             'conectividade': 'Conectividade - Manual PROATI DE Adamantina',
+			'internet': 'Internet - Manual PROATI DE Adamantina',
             'curso-tecnico': 'Curso Técnico - Manual PROATI DE Adamantina',
             'entregas-2025': 'Entregas 2025 - Manual PROATI DE Adamantina',
             'garantia': 'Garantia - Manual PROATI DE Adamantina',
@@ -362,6 +363,9 @@ class PageLoader {
             case 'levantamentos':
                 this.initLevantamentosFeatures();
                 break;
+			case 'internet':
+				this.loadSituacaoInternets();
+				break;
             case 'conectividade':
                 this.initConectividadeFeatures();
                 break;
@@ -424,6 +428,80 @@ class PageLoader {
 					dateText.style.color = color;
 					
 				} else {
+					dateText.innerHTML = '❓ Sem dados';
+					dateText.style.color = '#6b7280';
+				}
+			});
+			
+		} catch (error) {
+			console.error('Erro ao carregar datas de atualização:', error);
+			
+			// Em caso de erro, mostra mensagem padrão
+			const dateTexts = document.querySelectorAll('.date-text');
+			dateTexts.forEach(dateText => {
+				dateText.innerHTML = '❌ Erro ao carregar';
+				dateText.style.color = '#ef4444';
+			});
+		}
+	}
+	
+	// Função para carregar a situação da contratação das internets
+	async loadSituacaoInternets() {
+		try {
+			const response = await fetch('https://script.google.com/macros/s/AKfycbyuPQ4V_PaV3_tKi_jYOYSeAxpuW2Vqo6fws1_Zk6VhGED1OZSZo23zEo2aRPyxSYPtVg/exec');
+			
+			if (!response.ok) {
+				throw new Error('Erro ao carregar dados');
+			}
+			
+			const data = await response.json();
+			
+			// Processa cada escola
+			const updateElements = document.querySelectorAll('.update-date');
+			
+			updateElements.forEach(element => {
+				const escolaNome = element.getAttribute('data-escola');
+				const dateText = element.querySelector('.date-text');
+				
+				// Procura a escola nos dados retornados
+				const escolaData = data.find(item => item[0] === escolaNome);
+				
+				if (escolaData && escolaData[1] && escolaData[1] != 'NÃO INFORMOU') {
+					const updateDate = new Date(escolaData[1]);
+					const updateNoTime = new Date(updateDate.getFullYear(), updateDate.getMonth(), updateDate.getDate());
+					
+					const today = new Date();
+					const todayNoTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+					
+					const diffTime = Math.abs(todayNoTime - updateNoTime);
+					const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+					
+					// Formata a data para exibição
+					const formattedDate = updateNoTime.toLocaleDateString('pt-BR');
+					
+					// Define a cor baseada nos dias
+					let color = '';
+					let status = '';
+					
+					if (diffDays >= 30) {
+						color = '#22c55e'; // Verde
+						status = '✅';
+					} else if (diffDays > 0) {
+						color = '#f59e0b'; // Amarelo
+						status = '⚠️';
+					} else {
+						color = '#ef4444'; // Vermelho
+						status = '🔴';
+					}
+					
+					dateText.innerHTML = `${status} ${formattedDate} (${diffDays} dias)`;
+					dateText.style.color = color;
+					
+				} else if (escolaData[1] == 'NÃO INFORMOU') {
+					dateText.innerHTML = '❓ NÃO INFORMOU';
+					dateText.style.color = '#ef4444';
+				}				
+				else {
 					dateText.innerHTML = '❓ Sem dados';
 					dateText.style.color = '#6b7280';
 				}
