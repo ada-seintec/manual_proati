@@ -473,8 +473,8 @@ class PageLoader {
 					const today = new Date();
 					const todayNoTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 					
-					const diffTime = Math.abs(todayNoTime - updateNoTime);
-					const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+					const diffTime = updateNoTime - todayNoTime;
+					const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 					
 					// Formata a data para exibição
 					const formattedDate = updateNoTime.toLocaleDateString('pt-BR');
@@ -483,7 +483,7 @@ class PageLoader {
 					let color = '';
 					let status = '';
 					
-					if (diffDays >= 30) {
+					if (diffDays > 30) {
 						color = '#22c55e'; // Verde
 						status = '✅';
 					} else if (diffDays > 0) {
