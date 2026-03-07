@@ -42,7 +42,7 @@ class PageLoader {
     getDefaultTitle(pageId) {
         const titles = {
             'home': 'Manual PROATI DE Adamantina',
-            'comunicados-nit': 'Comunicados NIT - Manual PROATI DE Adamantina',
+            'comunicados-nit': 'Comunicados SEINTEC - Manual PROATI DE Adamantina',
             'levantamentos': 'Levantamentos - Manual PROATI DE Adamantina',
             'comunicados-seduc': 'Comunicados SEDUC - Manual PROATI DE Adamantina',
             'equipe': 'Equipe - Manual PROATI DE Adamantina',
