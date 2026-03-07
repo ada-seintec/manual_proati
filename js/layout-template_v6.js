@@ -6,7 +6,7 @@ class LayoutTemplate {
         this.isInitialized = false;
         this.menuItems = [
             { id: 'home', title: '🏠 Início', icon: '🏠' },
-            { id: 'comunicados-nit', title: '📢 Comunicados NIT', icon: '📢' },
+            { id: 'comunicados-nit', title: '📢 Comunicados SEINTEC', icon: '📢' },
             { id: 'levantamentos', title: '📊 Levantamentos', icon: '📊' },
 			{ id: 'internet', title: '🌐 Internet', icon: '🌐' },
 			{ id: 'saresp', title: '📝 Saresp', icon: '📝' },
