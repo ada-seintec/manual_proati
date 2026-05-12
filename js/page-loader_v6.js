@@ -448,7 +448,7 @@ class PageLoader {
 	// Função para carregar a situação da contratação das internets
 	async loadSituacaoInternets() {
 		try {
-			const response = await fetch('https://script.google.com/macros/s/AKfycbyuPQ4V_PaV3_tKi_jYOYSeAxpuW2Vqo6fws1_Zk6VhGED1OZSZo23zEo2aRPyxSYPtVg/exec');
+			const response = await fetch('https://script.google.com/macros/s/AKfycbwx8cp_31zPyhqUo1MrponhgBIOaTfhcTLOK4VuIWM8xo4x_6WQKr4xVO_If_sotCJiDA/exec');
 			
 			if (!response.ok) {
 				throw new Error('Erro ao carregar dados');
